@@ -27,4 +27,7 @@
     <string name="minimum_amount">El monto mínimo de compra son 2 pesos</string>
     <string name="accept_pay">Confirmar pago</string>
     <string name="money_sign">$</string>
+    <string name="departure_hour">Hora de finalización</string>
+    <string name="of">del</string>
+    <string name="unit_time">Hrs</string>
 </resources>

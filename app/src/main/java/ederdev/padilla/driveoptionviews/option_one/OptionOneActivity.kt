@@ -33,6 +33,9 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     val simpleDateFormat = SimpleDateFormat("HH:mm")
     var dateHour :Date?= null
 
+    private var time: Long? = null
+
+    private lateinit var d2: Date
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +44,6 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setSupportActionBar(toolbar)
         setUpBasicView()
     }
-
-    private var time: Long? = null
-
-    private lateinit var d2: Date
 
     private fun setUpBasicView() {
 
