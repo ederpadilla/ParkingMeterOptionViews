@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Drive Option Views</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_option_one">OptionOneActivity</string>
+    <string name="title_activity_option_two">OptionTwoActivity</string>
+    <string name="title_activity_surprise">SurpriseActivity</string>
+    <string name="roll_right_arrow_des">Girar a la derecha</string>
+    <string name="add_coin">Agregar dinero</string>
+    <string name="substract_coin">Restar moneda</string>
+    <string name="amount">Monto</string>
+    <string name="charge_for_commission">Cargo $0.00 por comisión</string>
+    <string name="parking">Estacionamiento</string>
+    <string name="parkingmeter">Parquímetro</string>
+    <string name="valet">Valet Parking</string>
+    <string name="ticket">Boleto</string>
+    <string name="car">Vehículo</string>
+    <string name="go">Arrow to go</string>
+    <string name="payment_method">Método de pago</string>
+    <string name="colony">Colonia</string>
+    <string name="timmer">Duración</string>
+    <string name="to_the_time">Hasta las</string>
+    <string name="hour_of">Hrs del</string>
+    <string name="minimum_amount">El monto mínimo de compra son 2 pesos</string>
+    <string name="accept_pay">Confirmar pago</string>
+    <string name="money_sign">$</string>
+</resources>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:seekarc="http://schemas.android.com/apk/res-auto">
+
+    <ederdev.padilla.driveoptionviews.view.SeekArc
+        android:id="@+id/mSeekAcr"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:padding="25dp"
+        seekarc:arcColor="#0063A7"
+        seekarc:arcWidth="6dp"
+        seekarc:clockwise="true"
+        seekarc:max="58"
+        seekarc:progressColor="@color/bbva"
+        seekarc:progressWidth="8dp"
+        seekarc:rotation="0"
+        seekarc:sweepAngle="360"
+        seekarc:thumb="@drawable/thumbnail"
+        seekarc:touchInside="true" />
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:rotation="-10"
+            android:contentDescription="@string/roll_right_arrow_des"
+            android:src="@mipmap/arrow_1" />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="20dp"
+            android:rotation="-14"
+            android:layout_gravity="center|start"
+            android:contentDescription="@string/roll_right_arrow_des"
+            android:src="@mipmap/arrow_2" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/mImgPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/plus"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        android:onClick="plusAmount"
+        android:contentDescription="@string/add_coin" />
+
+    <ImageView
+        android:id="@+id/mImgSubstract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:onClick="substractAmount"
+        android:contentDescription="@string/substract_coin"
+        android:src="@mipmap/minus" />
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:textColor="@color/progress_gray_dark"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/mTvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_dark"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:padding="0dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/charge_for_commission"
+            android:textSize="8sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
