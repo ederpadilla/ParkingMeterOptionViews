@@ -14,7 +14,7 @@
         seekarc:arcColor="#0063A7"
         seekarc:arcWidth="6dp"
         seekarc:clockwise="true"
-        seekarc:max="58"
+        seekarc:max="48"
         seekarc:progressColor="@color/bbva"
         seekarc:progressWidth="8dp"
         seekarc:rotation="0"
