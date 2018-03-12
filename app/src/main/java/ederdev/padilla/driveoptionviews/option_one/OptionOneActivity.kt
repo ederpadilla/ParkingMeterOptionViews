@@ -12,6 +12,8 @@ import android.view.View
 import ederdev.padilla.driveoptionviews.R
 import ederdev.padilla.driveoptionviews.option_surprise.SurpriseActivity
 import ederdev.padilla.driveoptionviews.option_two.OptionTwoActivity
+import ederdev.padilla.driveoptionviews.util.GetEquivalence
+import ederdev.padilla.driveoptionviews.util.TimeEquivalence
 import ederdev.padilla.driveoptionviews.view.SeekArc
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -54,7 +56,6 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         nav_view.setNavigationItemSelectedListener(this)
         nav_view.menu.getItem(0).setChecked(true)
         nav_view.menu.getItem(1).setChecked(true)
-        nav_view.menu.getItem(2).setChecked(true)
         mSeekAcr.progress = 2
         mTvAmount.text = "${mSeekAcr.progress}$"
         val formatHour = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -104,11 +105,11 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(optionTwoIntent)
                 this.finish()
             }
-            R.id.nav_slideshow -> {
+           /* R.id.nav_slideshow -> {
                 val optionSurprise = Intent(this,SurpriseActivity::class.java)
                 startActivity(optionSurprise)
                 this.finish()
-            }
+            }*/
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -122,8 +123,13 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             myHour = formatHour.format(Date())
             mTvHour.text = myHour
         }else {
-            checkForDate(progress)
+            val equivalence = GetEquivalence.equivalences.get(progress)
+            checkForSetDate(equivalence)
         }
+    }
+
+    private fun checkForSetDate(equivalence: TimeEquivalence) {
+        sumMinutes(equivalence.minutes)
     }
 
     override fun onStartTrackingTouch(seekArc: SeekArc) {
@@ -144,69 +150,16 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             mSeekAcr.progress = mSeekAcr.progress-1
         }
     }
-    private fun checkForDate(progress: Int) {
-        when(progress){
-                    2->{sumMinutes(12)}
-                    3->{sumMinutes(19)}
-                    4->{sumMinutes(25)}
-                    5->{sumMinutes(31)}
-                    6->{sumMinutes(37)}
-                    7->{sumMinutes(44)}
-                    8->{sumMinutes(50)}
-                    9->{sumMinutes(56)}
-                    10->{sumMinutes(62)}
-                    11->{sumMinutes(69)}
-                    12->{sumMinutes(75)}
-                    13->{sumMinutes(81)}
-                    14->{sumMinutes(87)}
-                    15->{sumMinutes(94)}
-                    16->{sumMinutes(100)}
-                    17->{sumMinutes(106)}
-                    18->{sumMinutes(112)}
-                    19->{sumMinutes(119)}
-                    20->{sumMinutes(125)}
-                    21->{sumMinutes(131)}
-                    22->{sumMinutes(137)}
-                    23->{sumMinutes(144)}
-                    24->{sumMinutes(150)}
-                    25->{sumMinutes(156)}
-                    26->{sumMinutes(162)}
-                    27->{sumMinutes(168)}
-                    28->{sumMinutes(175)}
-                    29->{sumMinutes(181)}
-                    30->{sumMinutes(187)}
-                    31->{sumMinutes(193)}
-                    32->{sumMinutes(200)}
-                    33->{sumMinutes(206)}
-                    34->{sumMinutes(212)}
-                    35->{sumMinutes(218)}
-                    36->{sumMinutes(225)}
-                    37->{sumMinutes(231)}
-                    38->{sumMinutes(237)}
-                    39->{sumMinutes(243)}
-                    40->{sumMinutes(250)}
-                    41->{sumMinutes(256)}
-                    42->{sumMinutes(262)}
-                    43->{sumMinutes(268)}
-                    44->{sumMinutes(275)}
-                    45->{sumMinutes(281)}
-                    46->{sumMinutes(287)}
-                    47->{sumMinutes(293)}
-                    48->{sumMinutes(300)}
-        }
-    }
+
     fun sumMinutes(minutes : Int) {
         val completeDate = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
         val calendar = Calendar.getInstance()
         val now = Date()
-
-        val dateAsString = completeDate.format(now) //"08.01.2013"
+        val dateAsString = completeDate.format(now)
         val dateFromString = completeDate.parse(dateAsString)
-        calendar.time = dateFromString //tuFechaBase es un Date;
-        calendar.add(Calendar.MINUTE, minutes) //minutosASumar es int.
-        //calendar.add(Calendar.HOUR, horasASumar) //horasASumar es int.
-//lo que más quieras sumar
-        val departureDate = calendar.time //Y ya tienes la fecha sumada.
+        calendar.time = dateFromString
+        calendar.add(Calendar.MINUTE, minutes)
+        val departureDate = calendar.time
         val departureHour = "${calendar.get(Calendar.HOUR)}:${calendar.get(Calendar.MINUTE)}"
         mTvHour.text = departureHour
     }
