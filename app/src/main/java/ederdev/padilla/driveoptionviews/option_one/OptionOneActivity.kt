@@ -13,9 +13,7 @@ import android.view.View
 import ederdev.padilla.driveoptionviews.R
 import ederdev.padilla.driveoptionviews.option_two.OptionTwoActivity
 import ederdev.padilla.driveoptionviews.util.GetEquivalence
-import ederdev.padilla.driveoptionviews.util.GetTimes
 import ederdev.padilla.driveoptionviews.util.TimeEquivalence
-import ederdev.padilla.driveoptionviews.util.TimeWithMinutesAnHour
 import ederdev.padilla.driveoptionviews.view.SeekArc
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -23,7 +21,6 @@ import kotlinx.android.synthetic.main.circular_seekbar_view.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.logging.Logger
 
 
 class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,SeekArc.OnSeekArcChangeListener {
@@ -125,7 +122,6 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
     override fun onProgressChanged(seekArc: SeekArc, progress: Int, fromUser: Boolean) {
         mTvAmount.text = "$ $progress.00"
-
         if (progress<2){
             seekArc.progress = 2
             val formatHour = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -133,18 +129,13 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             mTvHour.text = myHour
         }else {
             val equivalence = GetEquivalence.equivalences.get(progress)
-            val equivalenceTime = GetTimes.getTimeAndHour.get(progress)
-            checkForSetTime(equivalenceTime)
             checkForSetDate(equivalence)
         }
     }
 
-    private fun checkForSetTime(equivalenceTime: TimeWithMinutesAnHour) {
-        mTvHourAprox.text = equivalenceTime.hour
-        mTvMinAprox.text = equivalenceTime.minute
-    }
-
     private fun checkForSetDate(equivalence: TimeEquivalence) {
+        mTvHourAprox.text = equivalence.hoursString
+        mTvMinAprox.text = equivalence.minutesString
         sumMinutes(equivalence.minutes)
     }
 

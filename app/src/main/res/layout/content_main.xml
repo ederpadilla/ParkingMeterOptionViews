@@ -411,8 +411,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="15sp"
+                                    android:textSize="12sp"
                                     android:textColor="@color/black"
+                                    android:layout_gravity="center"
                                     android:text="@string/of"/>
                                 <TextView
                                     android:id="@+id/mTvDate"
@@ -420,8 +421,8 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
                                     android:layout_marginStart="2dp"
-                                    android:layout_gravity="center"
-                                    android:textColor="@color/black"/>
+                                    android:textColor="@color/black"
+                                    android:layout_gravity="center"/>
 
                             </LinearLayout>
 
