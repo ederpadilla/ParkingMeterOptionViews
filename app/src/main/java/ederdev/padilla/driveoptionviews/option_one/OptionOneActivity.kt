@@ -1,6 +1,7 @@
 package ederdev.padilla.driveoptionviews.option_one
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -10,10 +11,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import ederdev.padilla.driveoptionviews.R
-import ederdev.padilla.driveoptionviews.option_surprise.SurpriseActivity
 import ederdev.padilla.driveoptionviews.option_two.OptionTwoActivity
 import ederdev.padilla.driveoptionviews.util.GetEquivalence
+import ederdev.padilla.driveoptionviews.util.GetTimes
 import ederdev.padilla.driveoptionviews.util.TimeEquivalence
+import ederdev.padilla.driveoptionviews.util.TimeWithMinutesAnHour
 import ederdev.padilla.driveoptionviews.view.SeekArc
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -21,7 +23,7 @@ import kotlinx.android.synthetic.main.circular_seekbar_view.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.text.SimpleDateFormat
 import java.util.*
-
+import java.util.logging.Logger
 
 
 class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,SeekArc.OnSeekArcChangeListener {
@@ -45,6 +47,7 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         setUpBasicView()
+
     }
 
     private fun setUpBasicView() {
@@ -56,8 +59,13 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         nav_view.setNavigationItemSelectedListener(this)
         nav_view.menu.getItem(0).setChecked(true)
         nav_view.menu.getItem(1).setChecked(true)
+        val colorGray = Color.parseColor("#4d4d4d") //The color u want
+        mImgArrow1.setColorFilter(colorGray)
+        mImgArrow2.setColorFilter(colorGray)
         mSeekAcr.progress = 2
-        mTvAmount.text = "${mSeekAcr.progress}$"
+        mTvAmount.text = "$ ${mSeekAcr.progress}.00"
+        mTvHourAprox.text = "00"
+        mTvMinAprox.text = "12"
         val formatHour = SimpleDateFormat("HH:mm", Locale.getDefault())
         val formatDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         myHour = formatHour.format(Date())
@@ -116,7 +124,8 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         return true
     }
     override fun onProgressChanged(seekArc: SeekArc, progress: Int, fromUser: Boolean) {
-        mTvAmount.text = "$progress$"
+        mTvAmount.text = "$ $progress.00"
+
         if (progress<2){
             seekArc.progress = 2
             val formatHour = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -124,8 +133,15 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             mTvHour.text = myHour
         }else {
             val equivalence = GetEquivalence.equivalences.get(progress)
+            val equivalenceTime = GetTimes.getTimeAndHour.get(progress)
+            checkForSetTime(equivalenceTime)
             checkForSetDate(equivalence)
         }
+    }
+
+    private fun checkForSetTime(equivalenceTime: TimeWithMinutesAnHour) {
+        mTvHourAprox.text = equivalenceTime.hour
+        mTvMinAprox.text = equivalenceTime.minute
     }
 
     private fun checkForSetDate(equivalence: TimeEquivalence) {

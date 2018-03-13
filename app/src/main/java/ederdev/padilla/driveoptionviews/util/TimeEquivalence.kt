@@ -14,4 +14,5 @@ class TimeEquivalence(amount: Int, minutes: Int) {
         this.amount = amount
         this.minutes = minutes
     }
+
 }

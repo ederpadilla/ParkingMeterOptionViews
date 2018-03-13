@@ -30,4 +30,7 @@
     <string name="departure_hour">Hora de finalización</string>
     <string name="of">del</string>
     <string name="unit_time">Hrs</string>
+    <string name="unit_time_min">Min</string>
+    <string name="two_points">:</string>
+    <string name="hour_of_departure">Hora de finalización</string>
 </resources>

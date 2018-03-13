@@ -61,4 +61,5 @@ object GetEquivalence {
             timeEquivalences.add(TimeEquivalence(48, 300))
             return timeEquivalences
         }
+
 }
