@@ -167,7 +167,14 @@ class OptionOneActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         calendar.time = dateFromString
         calendar.add(Calendar.MINUTE, minutes)
         val departureDate = calendar.time
-        val departureHour = "${calendar.get(Calendar.HOUR)}:${calendar.get(Calendar.MINUTE)}"
+        val minuteInt = calendar.get(Calendar.MINUTE)
+        var departureHour = ""
+        if (minuteInt<=9){
+            departureHour = "${calendar.get(Calendar.HOUR)}:0${calendar.get(Calendar.MINUTE)}"
+        }else{
+            departureHour = "${calendar.get(Calendar.HOUR)}:${calendar.get(Calendar.MINUTE)}"
+        }
+
         mTvHour.text = departureHour
     }
 }
